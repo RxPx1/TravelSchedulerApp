@@ -1,8 +1,10 @@
-package com.myappcompany.rob.d308_mobileapp;
+package com.myappcompany.rob.d308_mobileapp.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.myappcompany.rob.d308_mobileapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
