@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">D308_MobileApp</string>
+    <string name="app_name">Travel Scheduler</string>
+    <string name="share">Share</string>
+    <string name="notify_start">Notify Start</string>
+    <string name="notify_end">Notify End</string>
+    <string name="channel_name">VacationChannel</string>
+    <string name="channel_description">Notifications for Vacation Scheduler App</string>
 </resources>

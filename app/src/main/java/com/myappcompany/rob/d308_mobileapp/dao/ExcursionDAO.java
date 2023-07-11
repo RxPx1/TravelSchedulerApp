@@ -1,6 +1,7 @@
 package com.myappcompany.rob.d308_mobileapp.dao;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -15,8 +16,7 @@ import java.util.List;
 @Dao
 public interface ExcursionDAO {
 
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict= OnConflictStrategy.IGNORE)
     void insert(Excursion excursion);
 
     @Update
@@ -27,4 +27,7 @@ public interface ExcursionDAO {
 
     @Query("SELECT * FROM EXCURSIONS ORDER BY excursionID ASC")
     List<Excursion> getAllExcursions();
+
+    @Query("SELECT * FROM EXCURSIONS WHERE excursionID = :id")
+    LiveData<Excursion> getExcursionById(int id);
 }

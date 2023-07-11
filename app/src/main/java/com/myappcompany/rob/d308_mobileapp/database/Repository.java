@@ -2,6 +2,8 @@ package com.myappcompany.rob.d308_mobileapp.database;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+
 import com.myappcompany.rob.d308_mobileapp.dao.ExcursionDAO;
 import com.myappcompany.rob.d308_mobileapp.dao.VacationDAO;
 import com.myappcompany.rob.d308_mobileapp.entities.Excursion;
@@ -13,12 +15,12 @@ import java.util.concurrent.Executors;
 
 public class Repository {
 
-
     private ExcursionDAO mExcursionDAO;
 
     private VacationDAO mVacationDAO;
 
     private List<Vacation> mAllVacations;
+    private List<String> mVacationNames;
 
     private List<Excursion> mAllExcursions;
 
@@ -31,6 +33,14 @@ public class Repository {
         mExcursionDAO = db.excursionDAO();
     }
 
+    public LiveData<Vacation> getVacationById(int id) {
+        return mVacationDAO.getVacationById(id);
+    }
+
+    public LiveData<Excursion> getExcursionById(int id){
+        return mExcursionDAO.getExcursionById(id);
+    }
+
     public List<Vacation> getAllVacations(){
         databaseExecutor.execute(()->{
             mAllVacations = mVacationDAO.getAllVacations();
@@ -41,6 +51,18 @@ public class Repository {
             e.printStackTrace();
         }
         return mAllVacations;
+    }
+
+    public List<String> getVacationNames(){
+        databaseExecutor.execute(()->{
+            mVacationNames = mVacationDAO.getVacationNames();
+        });
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return mVacationNames;
     }
 
 
@@ -121,7 +143,5 @@ public class Repository {
             e.printStackTrace();
         }
     }
-
-
 
 }
