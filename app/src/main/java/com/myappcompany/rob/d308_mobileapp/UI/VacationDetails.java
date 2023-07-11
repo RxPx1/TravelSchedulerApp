@@ -120,6 +120,7 @@ public class VacationDetails extends AppCompatActivity {
                 } else {
                     vacation.setStartDate(startDate);
                     vacation.setEndDate(endDate);
+                    vacation = new Vacation(vacationId, editName.getText().toString(), editLodging.getText().toString(), startDate, endDate);
                     repository.update(vacation);
                     Toast.makeText(VacationDetails.this, vacation.getVacationName() + " was SAVED!", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(VacationDetails.this, VacationList.class);

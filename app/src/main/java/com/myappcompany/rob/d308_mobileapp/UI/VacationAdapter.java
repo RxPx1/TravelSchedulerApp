@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.myappcompany.rob.d308_mobileapp.R;
 import com.myappcompany.rob.d308_mobileapp.entities.Vacation;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.VacationViewHolder> {
 
@@ -61,6 +64,8 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
             Vacation current=mVacations.get(position);
             String name=current.getVacationName();
             holder.vacationItemView.setText(name);
+            String startDate = formatDate(current.getStartDate());
+            holder.vacationItemView.setText(name + "   -->    " + startDate);
         }
         else{
             holder.vacationItemView.setText("No Vacation Name");
@@ -75,5 +80,9 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.Vacati
     public void setVacations(List<Vacation> vacations){
         mVacations=vacations;
         notifyDataSetChanged();
+    }
+    private String formatDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd", Locale.getDefault());
+        return sdf.format(date);
     }
 }

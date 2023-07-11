@@ -74,7 +74,6 @@ public class ExcursionDetails extends AppCompatActivity {
                         long minDate = myCalendar.getTimeInMillis();
                         myCalendar.setTime(vacationEndDate);
                         long maxDate = myCalendar.getTimeInMillis();
-
                         repository = new Repository(getApplication());
                         excursion = repository.getExcursionById(excursionId).getValue();
                         LiveData<Excursion> excursionLiveData = repository.getExcursionById(excursionId);
