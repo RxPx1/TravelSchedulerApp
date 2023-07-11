@@ -70,7 +70,6 @@ public class ExcursionDetails extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        // Set the minimum and maximum date for the excursion date picker
                         myCalendar.setTime(vacationStartDate);
                         long minDate = myCalendar.getTimeInMillis();
                         myCalendar.setTime(vacationEndDate);
@@ -175,14 +174,14 @@ public class ExcursionDetails extends AppCompatActivity {
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
             return true;
-        } else if (itemId == R.id.deleteexcursion) {
+        } else if ( itemId == R.id.deleteexcursion) {
             if (excursion != null) {
                 repository.delete(excursion);
                 Toast.makeText(ExcursionDetails.this, excursion.getExcursionName() + " was deleted", Toast.LENGTH_LONG).show();
             }
             finish();
-            return true;
-        } else if (itemId == R.id.notifystart) {
+             return true;
+        } else if ( itemId == R.id.notifystart ) {
             String dateFromScreen = editDate.getText().toString();
             String myFormat = "MM/dd/yy";
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -199,8 +198,8 @@ public class ExcursionDetails extends AppCompatActivity {
             PendingIntent sender = PendingIntent.getBroadcast(ExcursionDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
-            return true;
-        } else if (itemId == R.id.notifyend) {
+             return true;
+        } else if ( itemId == R.id.notifyend ) {
             String dateFromScreen = editDate.getText().toString();
             String myFormat = "MM/dd/yy";
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -217,7 +216,7 @@ public class ExcursionDetails extends AppCompatActivity {
             PendingIntent sender = PendingIntent.getBroadcast(ExcursionDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
-            return true;
+             return true;
         }
 
         return super.onOptionsItemSelected(item);
