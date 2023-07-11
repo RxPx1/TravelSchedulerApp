@@ -11,6 +11,7 @@ import androidx.room.Update;
 
 import com.myappcompany.rob.d308_mobileapp.entities.Vacation;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -34,4 +35,9 @@ public interface VacationDAO {
     @Query("SELECT * FROM VACATIONS WHERE vacationID = :id")
     LiveData<Vacation> getVacationById(int id);
 
+    @Query("SELECT startDate FROM VACATIONS WHERE vacationID = :id")
+    Long getVacationStartDate(int id);
+
+    @Query("SELECT endDate FROM VACATIONS WHERE vacationID = :id")
+    Long getVacationEndDate(int id);
 }

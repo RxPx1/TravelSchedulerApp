@@ -7,6 +7,7 @@
     android:background="@android:color/holo_blue_light"
     tools:context=".UI.VacationDetails">
 
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="405dp"
@@ -183,4 +184,3 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
