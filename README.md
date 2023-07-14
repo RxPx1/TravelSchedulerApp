@@ -1,4 +1,6 @@
-Travel Scheduler
+# TravelSchedulerApp
+
+
 
 The purpose of this application is to allow the user to enter in vacations and keep track of when they start and end.
 The app allows the user to enter a vacation, the place they will be using for lodging during the vacation, the vacation start date, and the vacation end date.
@@ -37,6 +39,3 @@ Delete will delete the Excursion from the application. (There is no way to undo 
 
 
 This application was signed to Android API 26 Android 8.0 Oreo
-
-
-
