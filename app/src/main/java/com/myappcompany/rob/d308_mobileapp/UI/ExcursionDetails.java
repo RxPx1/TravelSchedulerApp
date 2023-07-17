@@ -182,6 +182,7 @@ public class ExcursionDetails extends AppCompatActivity {
              return true;
         } else if ( itemId == R.id.notifystart ) {
             String dateFromScreen = editDate.getText().toString();
+            String excursionName = editName.getText().toString();
             String myFormat = "MM/dd/yy";
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
             Date myDate = null;
@@ -191,31 +192,13 @@ public class ExcursionDetails extends AppCompatActivity {
                 e.printStackTrace();
             }
             Long trigger = myDate.getTime();
-            Intent intent = new Intent(ExcursionDetails.this, MyReceiver.class);
-            intent.putExtra("isStartNotification", true);
-            intent.putExtra("key", dateFromScreen + " should trigger");
+            Intent intent = new Intent(ExcursionDetails.this, ExcurStartReceiver.class);
+            intent.putExtra("key", dateFromScreen + " " + excursionName + " Excursion is Starting");
             PendingIntent sender = PendingIntent.getBroadcast(ExcursionDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
-             return true;
-        } else if ( itemId == R.id.notifyend ) {
-            String dateFromScreen = editDate.getText().toString();
-            String myFormat = "MM/dd/yy";
-            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-            Date myDate = null;
-            try {
-                myDate = sdf.parse(dateFromScreen);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            Long trigger = myDate.getTime();
-            Intent intent = new Intent(ExcursionDetails.this, MyReceiver.class);
-            intent.putExtra("isStartNotification", false);
-            intent.putExtra("key", dateFromScreen + " should trigger");
-            PendingIntent sender = PendingIntent.getBroadcast(ExcursionDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
-             return true;
+            Toast.makeText(ExcursionDetails.this,"Excursion Start Notification is Set", Toast.LENGTH_LONG).show();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

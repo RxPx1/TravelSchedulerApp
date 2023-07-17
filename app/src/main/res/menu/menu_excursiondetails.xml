@@ -7,9 +7,6 @@
         android:id="@+id/notifystart"
         android:title="@string/notify_start" />
     <item
-        android:id="@+id/notifyend"
-        android:title="@string/notify_end" />
-    <item
         android:id="@+id/deleteexcursion"
         android:title="Delete Excursion" />
 </menu>

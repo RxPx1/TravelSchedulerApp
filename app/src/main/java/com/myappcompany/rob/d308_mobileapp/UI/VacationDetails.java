@@ -283,6 +283,7 @@ public class VacationDetails extends AppCompatActivity {
 
         } else if (itemId == R.id.notifystart) {
             String dateFromScreen = editStartDate.getText().toString();
+            String vacationName = editName.getText().toString();
             String myFormat = "MM/dd/yy";
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
             Date myDate = null;
@@ -292,16 +293,17 @@ public class VacationDetails extends AppCompatActivity {
                 e.printStackTrace();
             }
             Long trigger = myDate.getTime();
-            Intent intent = new Intent(VacationDetails.this, MyReceiver.class);
-            intent.putExtra("isStartNotification", true);
-            intent.putExtra("key", dateFromScreen + " should trigger");
+            Intent intent = new Intent(VacationDetails.this, VacStartReceiver.class);
+            intent.putExtra("key", dateFromScreen + " " + vacationName + " vacation is starting");
             PendingIntent sender = PendingIntent.getBroadcast(VacationDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+            Toast.makeText(VacationDetails.this,"Vacation Start Notification is Set", Toast.LENGTH_LONG).show();
             return true;
 
         } else if (itemId == R.id.notifyend) {
             String dateFromScreen = editEndDate.getText().toString();
+            String vacationName = editName.getText().toString();
             String myFormat = "MM/dd/yy";
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
             Date myDate = null;
@@ -311,12 +313,12 @@ public class VacationDetails extends AppCompatActivity {
                 e.printStackTrace();
             }
             Long trigger = myDate.getTime();
-            Intent intent = new Intent(VacationDetails.this, MyReceiver.class);
-            intent.putExtra("isStartNotification", false);
-            intent.putExtra("key", dateFromScreen + " should trigger");
+            Intent intent = new Intent(VacationDetails.this, VacEndReceiver.class);
+            intent.putExtra("key", dateFromScreen + " " + vacationName + " vacation is ending");
             PendingIntent sender = PendingIntent.getBroadcast(VacationDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+            Toast.makeText(VacationDetails.this,"Vacation End Notification is Set", Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
