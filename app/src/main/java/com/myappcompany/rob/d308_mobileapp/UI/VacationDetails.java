@@ -226,11 +226,7 @@ public class VacationDetails extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 
-        if (itemId == android.R.id.home) {
-            this.finish();
-            return true;
-
-        } else if (itemId == R.id.deletevacation) {
+        if (itemId == R.id.deletevacation) {
             for (Vacation vaca : repository.getAllVacations()) {
                 if (vaca.getVacationID() == vacationId) {
                     currentVacation = vaca;
@@ -255,8 +251,9 @@ public class VacationDetails extends AppCompatActivity {
                 startActivity(intent);
             }
             return true;
+        }
 
-        } else if (itemId == R.id.share) {
+        if (itemId == R.id.share) {
             if (filteredExcursions == null) {
                 Toast.makeText(this, "No excursions found", Toast.LENGTH_SHORT).show();
                 return true;
@@ -280,8 +277,9 @@ public class VacationDetails extends AppCompatActivity {
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
             return true;
+        }
 
-        } else if (itemId == R.id.notifystart) {
+        if (itemId == R.id.notifystart) {
             String dateFromScreen = editStartDate.getText().toString();
             String vacationName = editName.getText().toString();
             String myFormat = "MM/dd/yy";
@@ -293,15 +291,16 @@ public class VacationDetails extends AppCompatActivity {
                 e.printStackTrace();
             }
             Long trigger = myDate.getTime();
-            Intent intent = new Intent(VacationDetails.this, VacStartReceiver.class);
+            Intent intent = new Intent(VacationDetails.this, VacationReceiver.class);
             intent.putExtra("key", dateFromScreen + " " + vacationName + " vacation is starting");
             PendingIntent sender = PendingIntent.getBroadcast(VacationDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
-            Toast.makeText(VacationDetails.this,"Vacation Start Notification is Set", Toast.LENGTH_LONG).show();
+            Toast.makeText(VacationDetails.this, "Vacation Start Notification is Set", Toast.LENGTH_LONG).show();
             return true;
+        }
 
-        } else if (itemId == R.id.notifyend) {
+        if (itemId == R.id.notifyend) {
             String dateFromScreen = editEndDate.getText().toString();
             String vacationName = editName.getText().toString();
             String myFormat = "MM/dd/yy";
@@ -313,7 +312,7 @@ public class VacationDetails extends AppCompatActivity {
                 e.printStackTrace();
             }
             Long trigger = myDate.getTime();
-            Intent intent = new Intent(VacationDetails.this, VacEndReceiver.class);
+            Intent intent = new Intent(VacationDetails.this, VacationReceiver.class);
             intent.putExtra("key", dateFromScreen + " " + vacationName + " vacation is ending");
             PendingIntent sender = PendingIntent.getBroadcast(VacationDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

@@ -173,14 +173,16 @@ public class ExcursionDetails extends AppCompatActivity {
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
             return true;
-        } else if ( itemId == R.id.deleteexcursion) {
+        }
+        if ( itemId == R.id.deleteexcursion) {
             if (excursion != null) {
                 repository.delete(excursion);
                 Toast.makeText(ExcursionDetails.this, excursion.getExcursionName() + " was deleted", Toast.LENGTH_LONG).show();
             }
             finish();
-             return true;
-        } else if ( itemId == R.id.notifystart ) {
+            return true;
+        }
+        if ( itemId == R.id.notifystart ) {
             String dateFromScreen = editDate.getText().toString();
             String excursionName = editName.getText().toString();
             String myFormat = "MM/dd/yy";
@@ -192,7 +194,7 @@ public class ExcursionDetails extends AppCompatActivity {
                 e.printStackTrace();
             }
             Long trigger = myDate.getTime();
-            Intent intent = new Intent(ExcursionDetails.this, ExcurStartReceiver.class);
+            Intent intent = new Intent(ExcursionDetails.this, ExcursionReceiver.class);
             intent.putExtra("key", dateFromScreen + " " + excursionName + " Excursion is Starting");
             PendingIntent sender = PendingIntent.getBroadcast(ExcursionDetails.this, ++MainActivity.numAlert, intent, PendingIntent.FLAG_IMMUTABLE);
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

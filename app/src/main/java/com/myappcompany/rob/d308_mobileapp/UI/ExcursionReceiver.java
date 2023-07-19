@@ -15,18 +15,18 @@ import androidx.core.app.NotificationCompat;
 
 import com.myappcompany.rob.d308_mobileapp.R;
 
-public class VacStartReceiver extends BroadcastReceiver {
-    private static final String CHANNEL_1_ID = "Vacation Start";
+public class ExcursionReceiver extends BroadcastReceiver {
+    private static final String CHANNEL_3_ID = "Excursion Start";
     static int notificationID;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, intent.getStringExtra("key"), Toast.LENGTH_LONG).show();
-        createNotificationChannel(context, CHANNEL_1_ID);
-        Notification n = new NotificationCompat.Builder(context, CHANNEL_1_ID)
+        createNotificationChannel(context, CHANNEL_3_ID);
+        Notification n = new NotificationCompat.Builder(context, CHANNEL_3_ID)
                 .setSmallIcon(R.drawable.baseline_beach_access_24)
                 .setContentText(intent.getStringExtra("key"))
-                .setContentTitle("Vacation Start")
+                .setContentTitle("Excursion Start")
                 .build();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(notificationID++, n);
